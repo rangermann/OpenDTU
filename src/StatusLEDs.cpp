@@ -11,14 +11,16 @@ void StatusLEDs::setup(uint8_t pinOn, uint8_t pinOff)
 }
 void StatusLEDs::loop()
 {
-    bool isProducing = false;
+    uint8_t numProducing = 0;
     for (uint8_t i = 0; i < Hoymiles.getNumInverters(); i++) {
         auto inv = Hoymiles.getInverterByPos(i);
-        isProducing = inv->isProducing();
+        if(inv->isProducing()) {
+            numProducing++;
+        }        
     }
 
-    digitalWrite(pinOn, isProducing ? HIGH : LOW);
-    digitalWrite(pinOff, isProducing ? LOW : HIGH);
+    digitalWrite(pinOn, numProducing > 0 ? HIGH : LOW);
+    digitalWrite(pinOff, numProducing > 0 ? LOW : HIGH);
 }
 
 StatusLEDs StatusIndicator;
