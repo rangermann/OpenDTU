@@ -7,9 +7,6 @@
 This project was started from [this](https://www.mikrocontroller.net/topic/525778) discussion (Mikrocontroller.net).
 It was the goal to replace the original Hoymiles DTU (Telemetry Gateway) with their cloud access. With a lot of reverse engineering the Hoymiles protocol was decrypted and analyzed.
 
-## Additions
-* Display support for TM1637 four-digit displays (using https://github.com/avishorp/TM1637)
-
 ## Screenshots
 Several screenshots of the frontend can be found here: [Screenshots](docs/screenshots/README.md)
 
@@ -55,6 +52,7 @@ Firmware version seems to play not a significant role and cannot be read from th
 * Prometheus API endpoint (/api/prometheus/metrics)
 * English, german and french web interface
 * Displays (SSD1306, SH1106, PCD8544)
+* Display support for TM1637 four-digit displays (using https://github.com/avishorp/TM1637)
 
 ## Features for developers
 * The microcontroller part
@@ -97,6 +95,14 @@ This list is for your convenience only, the project is not related to any of the
 ### Power supply
 Use a power suppy with 5 V and 1 A. The USB cable connected to your PC/Notebook may be powerful enough or may be not.
 
+### TM1637 display
+The display shows the current total power value. The pins can be changed in main.cpp
+
+```
+// 4-digit display module connection pins (digital pins)
+#define FOUR_DIGIT_CLK 33
+#define FOUR_DIGIT_DIO 32
+```
 
 ## Wiring up
 ### Schematic
