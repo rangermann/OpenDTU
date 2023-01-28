@@ -16,6 +16,7 @@
 #include "WebApi.h"
 #include "defaults.h"
 #include "DigitDisplay.h"
+#include "StatusLEDs.h"
 #include <Arduino.h>
 #include <Hoymiles.h>
 #include <LittleFS.h>
@@ -24,8 +25,15 @@
 #define FOUR_DIGIT_CLK 33
 #define FOUR_DIGIT_DIO 32
 
+// status LED pins
+#define LED_RED 25
+#define LED_GREEN 26
+
 void setup()
 {
+    // Initialize status LEDs
+    StatusIndicator.setup(LED_GREEN, LED_RED);
+
     // Initialize 4-digit display
     FourDigitDisplay.setup(FOUR_DIGIT_CLK, FOUR_DIGIT_DIO);
     FourDigitDisplay.showNumber(8007);
@@ -191,5 +199,7 @@ void loop()
     MessageOutput.loop();
     yield();
     FourDigitDisplay.loop();
+    yield();
+    StatusIndicator.loop();
     yield();
 }
