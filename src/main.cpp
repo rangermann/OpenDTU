@@ -15,12 +15,21 @@
 #include "Utils.h"
 #include "WebApi.h"
 #include "defaults.h"
+#include "DigitDisplay.h"
 #include <Arduino.h>
 #include <Hoymiles.h>
 #include <LittleFS.h>
 
+// 4-digit display module connection pins (digital pins)
+#define FOUR_DIGIT_CLK 33
+#define FOUR_DIGIT_DIO 32
+
 void setup()
 {
+    // Initialize 4-digit display
+    FourDigitDisplay.setup(FOUR_DIGIT_CLK, FOUR_DIGIT_DIO);
+    FourDigitDisplay.showNumber(8007);
+
     // Initialize serial output
     Serial.begin(SERIAL_BAUDRATE);
     while (!Serial)
@@ -159,6 +168,8 @@ void setup()
     } else {
         MessageOutput.println(F("Invalid pin config"));
     }
+
+    FourDigitDisplay.clear();
 }
 
 void loop()
@@ -178,5 +189,7 @@ void loop()
     Display.loop();
     yield();
     MessageOutput.loop();
+    yield();
+    FourDigitDisplay.loop();
     yield();
 }
