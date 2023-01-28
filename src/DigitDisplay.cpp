@@ -8,8 +8,9 @@ DigitDisplay::~DigitDisplay()
     }
 }
 
-void DigitDisplay::setup(uint8_t pinClk, uint8_t pinDIO)
+void DigitDisplay::setup(uint8_t pinClk, uint8_t pinDIO, bool showTotalYieldDayIfOff)
 {
+    this->showTotalYieldDayIfOff = showTotalYieldDayIfOff;
     display = new TM1637Display(pinClk, pinDIO);
     display->setBrightness(7, true); // Turn on
     display->clear();
@@ -34,7 +35,11 @@ void DigitDisplay::loop()
     if (numProducing > 0) {
         display->showNumberDec(totalPower);
     } else {
-        display->setSegments(SEG_OFF);
+        if (showTotalYieldDayIfOff) {
+            display->showNumberDec(totalYieldDay);
+        } else {
+            display->setSegments(SEG_OFF);
+        }
     }
 }
 

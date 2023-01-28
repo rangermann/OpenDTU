@@ -16,7 +16,7 @@ class DigitDisplay {
 public:
     ~DigitDisplay();
 
-    void setup(uint8_t pinClk, uint8_t pinDIO);
+    void setup(uint8_t pinClk, uint8_t pinDIO, bool showTotalYieldDayIfOff);
     void loop();
     
     void clear();
@@ -24,6 +24,7 @@ public:
 
 private:
     TM1637Display* display;
+    bool showTotalYieldDayIfOff;
 };
 
 extern DigitDisplay FourDigitDisplay;
