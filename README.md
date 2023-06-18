@@ -108,8 +108,14 @@ The display shows the current total power value. The pins can be changed in main
 ### Schematic
 ![Schematic](docs/Wiring_ESP32_Schematic.png)
 
+With TM1637:
+![Schematic](Wiring_ESP32_Schematic_TM1637_LEDs.png)
+
 ### Symbolic view
-![Symbolic](docs/Wiring_ESP32_Symbol.png)
+![Symbolic](docs/Wiring_ESP32_Symbolpng)
+
+With TM1637:
+![Symbolic](docs/Wiring_ESP32_TM1637_LEDs_Symbol.png)
 
 ### Change pin assignment
 Its possible to change all the pins of the NRF24L01+ module.
