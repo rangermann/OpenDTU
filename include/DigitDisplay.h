@@ -10,13 +10,12 @@ const uint8_t SEG_OFF[] = {
 	0            // 
 	};
 
-
 class DigitDisplay {
 
 public:
     ~DigitDisplay();
 
-    void setup(uint8_t pinClk, uint8_t pinDIO, bool showTotalYieldDayIfOff);
+    void setup(uint8_t pinClk, uint8_t pinDIO, bool showTotalYieldDayIfOff, bool animate);
     void loop();
     
     void clear();
@@ -25,6 +24,11 @@ public:
 private:
     TM1637Display* display;
     bool showTotalYieldDayIfOff;
+    bool animate;
+    int current;
+    unsigned long lastChange;
+
+    void animateToTarget(int target);
 };
 
 extern DigitDisplay FourDigitDisplay;

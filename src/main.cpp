@@ -35,7 +35,7 @@ void setup()
     StatusIndicator.setup(LED_GREEN, LED_RED);
 
     // Initialize 4-digit display
-    FourDigitDisplay.setup(FOUR_DIGIT_CLK, FOUR_DIGIT_DIO, true);
+    FourDigitDisplay.setup(FOUR_DIGIT_CLK, FOUR_DIGIT_DIO, true, true);
     FourDigitDisplay.showNumber(8007);
 
     // Initialize serial output
